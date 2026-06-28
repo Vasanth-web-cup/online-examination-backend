@@ -36,7 +36,7 @@ public Exam createExam(@RequestBody Exam exam){
 
     // STUDENT + ADMIN → view all exams
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('STUDENT','ADMIN')")
+    //@PreAuthorize("hasAnyAuthority('STUDENT','ADMIN')")
     public List<Exam> all(){
         return examService.getAllExams();
     }
@@ -51,7 +51,7 @@ public Exam createExam(@RequestBody Exam exam){
 
     // STUDENT → submit exam
     @PostMapping("/submit")
-    @PreAuthorize("hasAuthority('STUDENT')")
+    //@PreAuthorize("hasAuthority('STUDENT')")
     public String submitExam(@RequestBody ExamSubmitRequest request){
         return resultService.evaluateExam(request);
     }
