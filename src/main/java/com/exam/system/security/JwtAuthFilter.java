@@ -26,10 +26,14 @@ protected void doFilterInternal(HttpServletRequest request,
     String path = request.getRequestURI();
 
         // 🔥 SKIP PUBLIC APIs
-        if (path.startsWith("/api/auth") || path.startsWith("/api/results/submit")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        if (
+    path.startsWith("/api/auth") ||
+    path.startsWith("/api/results/submit") ||
+    path.startsWith("/api/exams")
+) {
+    filterChain.doFilter(request, response);
+    return;
+}
 
     String header = request.getHeader("Authorization");
 

@@ -26,7 +26,10 @@ public class ExamController {
         this.resultService = resultService;
         this.examRepository = examRepository;
     }
-
+        @GetMapping("/test")
+public String test() {
+    return "Backend Working";
+}
     // ADMIN → create exam
     @PostMapping("/create")
 public Exam createExam(@RequestBody Exam exam){

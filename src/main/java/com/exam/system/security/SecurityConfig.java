@@ -23,12 +23,10 @@ public class SecurityConfig {
             .formLogin(form -> form.disable())
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                    "/api/auth/**",
-                    "/api/results/submit"
-                ).permitAll()
-                .anyRequest().permitAll()   // 🔥 keep open for now
-            );
+    .requestMatchers("/**").permitAll()
+    .anyRequest().permitAll()
+)
+            .addFilterBefore(jwtAuthFilter(), org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)   ;
 
         return http.build();
     }
