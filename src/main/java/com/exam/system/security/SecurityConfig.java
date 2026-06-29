@@ -1,5 +1,5 @@
 package com.exam.system.security;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,20 +14,22 @@ public class SecurityConfig {
         return new JwtAuthFilter();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+   @Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .httpBasic(httpBasic -> httpBasic.disable())
-            .formLogin(form -> form.disable())
+    System.out.println("SECURITY CONFIG LOADED");
 
-            .authorizeHttpRequests(auth -> auth
-    .requestMatchers("/**").permitAll()
-    .anyRequest().permitAll()
-)
-            .addFilterBefore(jwtAuthFilter(), org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)   ;
+    http
+        .csrf(csrf -> csrf.disable())
+        .httpBasic(httpBasic -> httpBasic.disable())
+        .formLogin(form -> form.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/**").permitAll()
+            .anyRequest().permitAll()
+        )
+        .addFilterBefore(jwtAuthFilter(),
+                UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+    return http.build();
+}
 }
