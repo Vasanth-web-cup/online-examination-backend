@@ -20,15 +20,16 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     System.out.println("SECURITY CONFIG LOADED");
 
     http
-        .csrf(csrf -> csrf.disable())
-        .httpBasic(httpBasic -> httpBasic.disable())
-        .formLogin(form -> form.disable())
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/**").permitAll()
-            .anyRequest().permitAll()
-        )
-        .addFilterBefore(jwtAuthFilter(),
-                UsernamePasswordAuthenticationFilter.class);
+    .cors(cors -> {})   // 👈 ADD THIS
+    .csrf(csrf -> csrf.disable())
+    .httpBasic(httpBasic -> httpBasic.disable())
+    .formLogin(form -> form.disable())
+    .authorizeHttpRequests(auth -> auth
+        .requestMatchers("/**").permitAll()
+        .anyRequest().permitAll()
+    )
+    .addFilterBefore(jwtAuthFilter(),
+            UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
 }
