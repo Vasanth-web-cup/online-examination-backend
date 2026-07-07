@@ -17,7 +17,8 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-            "https://online-examination-system-six-lime.vercel.app"
+            "https://online-examination-system-six-lime.vercel.app",
+            "http://localhost:5173"
         ));
 
         configuration.setAllowedMethods(List.of(

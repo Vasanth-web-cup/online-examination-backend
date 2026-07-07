@@ -4,16 +4,16 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://examadmin:vasanth1208@cluster0.3l6idwb.mongodb.net/online_exam_db?retryWrites=true&w=majority&appName=Cluster0
+      uri: ${SPRING_DATA_MONGODB_URI}
 
   main:
     allow-bean-definition-overriding: true
 
   mail:
-    host: smtp.gmail.com
+    host: smtp-relay.brevo.com
     port: 587
-    username: online.exam.system10@gmail.com
-    password: ehcmrshcxlsikvwp
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -21,9 +21,7 @@ spring:
           starttls:
             enable: true
             required: true
-          ssl:
-            trust: smtp.gmail.com
 
 logging:
-   level:
+  level:
     org.springframework.web: DEBUG
