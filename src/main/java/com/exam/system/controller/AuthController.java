@@ -95,6 +95,7 @@ public ResponseEntity<?> register(@RequestBody User user){
     return ResponseEntity.ok("Account created successfully");
 }
 
+
     // LOGIN
 @PostMapping("/login")
 public ResponseEntity<?> login(@RequestBody Map<String,String> request){
