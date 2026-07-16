@@ -38,7 +38,7 @@ public class OtpService {
 
     try {
     System.out.println("Before sending OTP mail...");
-   // mailSender.send(message);
+      mailSender.send(message);
     System.out.println("After sending OTP mail...");
 } catch (Exception e) {
     e.printStackTrace();
